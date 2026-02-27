@@ -17,25 +17,25 @@ def create_table(connection, sql):
     except sqlite3.Error as e:
         print(f"Ошибка создания таблицы: {e}")
 
-# def insert_books(connection):
-#     books = [
-#         ("War and Peace", "Leo Tolstoy", 1869, "Novel", 1225, 5),
-#         ("1984", "George Orwell", 1949, "Dystopian", 328, 8),
-#         ("The Great Gatsby", "F. Scott Fitzgerald", 1925, "Novel", 180, 6),
-#          ]
-#
-#     sql = """
-#     INSERT INTO books (name, author, publication_year, genre, number_of_pages, number_of_copies)
-#     VALUES (?, ?, ?, ?, ?, ?)
-#     """
+def insert_books(connection):
+    books = [
+        ("War and Peace", "Leo Tolstoy", 1869, "Novel", 1225, 5),
+        ("1984", "George Orwell", 1949, "Dystopian", 328, 8),
+        ("The Great Gatsby", "F. Scott Fitzgerald", 1925, "Novel", 180, 6),
+         ]
 
-    # cursor = connection.cursor()
-    # cursor.executemany(sql, books)
-    # connection.commit()  # <- обязательно, чтобы данные сохранились
-    # print("Книги добавлены успешно")
-#
-# if __name__ == "__main__":
-#     connection = create_connection("books.db")
+    sql = """
+    INSERT INTO books (name, author, publication_year, genre, number_of_pages, number_of_copies)
+    VALUES (?, ?, ?, ?, ?, ?)
+    """
+
+    cursor = connection.cursor()
+    cursor.executemany(sql, books)
+    connection.commit()  # <- обязательно, чтобы данные сохранились
+    print("Книги добавлены успешно")
+
+if __name__ == "__main__":
+    connection = create_connection("books.db")
 
 sql_create_books_table = """
         CREATE TABLE IF NOT EXISTS books (
